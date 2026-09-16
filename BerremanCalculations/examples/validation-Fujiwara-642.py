@@ -9,8 +9,9 @@
 # Expected results are indicated after the commands. They are identical 
 # with Fujiwara's results, except for a sign convention for Erp.
 
-import numpy, Berreman4x4
-from Berreman4x4 import c, pi
+import numpy
+from BerremanCalculations import Berreman4x4
+from BerremanCalculations.Berreman4x4 import c, pi
 import matplotlib.pyplot as pyplot
 import scipy.linalg
 
@@ -32,7 +33,7 @@ Theta_E = pi/4  # 2nd Eulet angle
 
 print("\n*** Air / anisotropic film / silicon substrate ***")
 
-filmMaterialRef = Berreman4x4.UniaxialNonDispersiveMaterial(n_o,n_e)
+filmMaterialRef = Berreman4x4.UniaxialNonDispersiveMaterial(n_o, n_e)
 R = Berreman4x4.rotation_Euler((Phi_E, Theta_E, 0))
 filmMaterial = filmMaterialRef.rotated(R)
 print("\nPermittivity tensor of the anisotropic film (eq 6.63, p. 241):")

@@ -7,8 +7,9 @@
 # Interface between two materials n1/n2. Calculations of the transmission and 
 # reflexion coefficients with varying incidence angle.
 
-import numpy, Berreman4x4
-from Berreman4x4 import c, pi
+import numpy
+from BerremanCalculations import Berreman4x4
+from BerremanCalculations.Berreman4x4 import pi
 import matplotlib.pyplot as pyplot
 import sys
 
@@ -70,7 +71,7 @@ T_th_pp = correction * t2_th_pp
 # Calculation with Berreman4x4
 Kx_list = front.get_Kx_from_Phi(Phi_i, k0)
 
-data = Berreman4x4.DataList([s.evaluate(Kx,k0) for Kx in Kx_list])
+data = Berreman4x4.DataList([s.evaluate(Kx, k0) for Kx in Kx_list])
 
 # Extraction of the power coefficients
 for name in ['R_ss', 'R_pp', 't_ss', 't_pp', 't_ss', 't_pp', 'T_ss', 'T_pp']:

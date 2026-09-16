@@ -6,9 +6,10 @@
 
 # Example of a 90° twisted nematic liquid crystal
 
-import numpy, Berreman4x4
+import numpy
+from BerremanCalculations import Berreman4x4
 from numpy import sin, sqrt
-from Berreman4x4 import c, pi, e_y
+from BerremanCalculations.Berreman4x4 import pi, e_y
 import matplotlib.pyplot as pyplot
 
 """
@@ -36,7 +37,7 @@ front = back = Berreman4x4.IsotropicHalfSpace(glass)
 (no, ne) = (1.5, 1.6)
 Dn = ne-no
 LC = Berreman4x4.UniaxialNonDispersiveMaterial(no, ne)
-R = Berreman4x4.rotation_v_theta(e_y, pi/2)
+R = Berreman4x4.rotation_v_theta(e_y, pi / 2)
 LC = LC.rotated(R)
 d = 4.33e-6
 TN = Berreman4x4.TwistedMaterial(LC, d)
@@ -66,7 +67,7 @@ ax.plot(k0_list, T, label="Gooch-Tarry law")
 # Calulation with Berreman4x4 and plotting
 def plotTransmission(label, marker='x'):
     """Plots power transmission vs. wavenumber."""
-    data = Berreman4x4.DataList([s.evaluate(Kx,k0) for k0 in k0_list])
+    data = Berreman4x4.DataList([s.evaluate(Kx, k0) for k0 in k0_list])
     T = data.get('T_pp')
     ax.plot(k0_list, T, marker, label=label)
 

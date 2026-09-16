@@ -6,9 +6,10 @@
 
 # Example of a cholesteric liquid crystal 
 
-import numpy, Berreman4x4
+import numpy
+from BerremanCalculations import Berreman4x4
 from numpy import sin, sqrt, abs, exp
-from Berreman4x4 import c, pi, e_y
+from BerremanCalculations.Berreman4x4 import pi, e_y
 import matplotlib.pyplot as pyplot
 
 ############################################################################
@@ -23,12 +24,12 @@ front = back = Berreman4x4.IsotropicHalfSpace(glass)
 Dn = ne-no
 n_med = (ne + no)/2
 LC = Berreman4x4.UniaxialNonDispersiveMaterial(no, ne)  # ne along z
-R = Berreman4x4.rotation_v_theta(e_y, pi/2)         # rotation round y
+R = Berreman4x4.rotation_v_theta(e_y, pi / 2)         # rotation round y
 LC = LC.rotated(R)              # apply rotation from z to x
 # Cholesteric pitch:
 p = 0.65e-6
 # One half turn of a right-handed helix:
-TN = Berreman4x4.TwistedMaterial(LC, p/2, angle=+pi, div=25)
+TN = Berreman4x4.TwistedMaterial(LC, p / 2, angle=+pi, div=25)
 
 # Inhomogeneous layer, repeated layer, and structure
 IL = Berreman4x4.InhomogeneousLayer(TN)
@@ -62,7 +63,7 @@ R_th = abs((w**2+1)*(1-exp(-2j*k0*n2*h)) \
 
 ############################################################################
 # Calculation with Berreman4x4
-data = Berreman4x4.DataList([s.evaluate(Kx,_k0) for _k0 in k0])
+data = Berreman4x4.DataList([s.evaluate(Kx, _k0) for _k0 in k0])
 
 # Jones matrices for the circular wave basis
 # Right-circular wave is reflected in the stop-band

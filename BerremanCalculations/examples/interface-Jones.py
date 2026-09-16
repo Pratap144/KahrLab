@@ -8,8 +8,9 @@
 
 print("*** Air / glass interface ***\n")
 
-import numpy, Berreman4x4
-from Berreman4x4 import c, pi 
+import numpy
+from BerremanCalculations import Berreman4x4
+from BerremanCalculations.Berreman4x4 import pi
 
 # Materials:
 air = Berreman4x4.IsotropicNonDispersiveMaterial(1.0)

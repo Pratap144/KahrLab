@@ -5,10 +5,10 @@
 
 # Validation for a TiO2/SiO2 Bragg mirror
 
-import numpy, Berreman4x4
-import scipy.linalg
+import numpy
+from BerremanCalculations import Berreman4x4
 import matplotlib.pyplot as pyplot
-from Berreman4x4 import c, pi
+from BerremanCalculations.Berreman4x4 import pi
 from numpy import newaxis, exp, sin
 
 print("\n*** TiO2/SiO2 Bragg mirror ***\n")
@@ -117,12 +117,12 @@ R_th_pp = (abs(ReflectionCoeff(pi/4, 'p')))**2
 # Calculation with Berreman4x4
 # Incidence angle Phi_i = 0, 's' polarization
 Kx = front.get_Kx_from_Phi(0)
-data = Berreman4x4.DataList([s.evaluate(Kx, 2*pi/lbda) for lbda in lbda_list])
+data = Berreman4x4.DataList([s.evaluate(Kx, 2 * pi / lbda) for lbda in lbda_list])
 R_ss_0 = data.get('R_ss')
 
 # Incidence angle Phi_i = pi/4, 's' and 'p' polarizations
 Kx = front.get_Kx_from_Phi(pi/4)
-data = Berreman4x4.DataList([s.evaluate(Kx, 2*pi/lbda) for lbda in lbda_list])
+data = Berreman4x4.DataList([s.evaluate(Kx, 2 * pi / lbda) for lbda in lbda_list])
 R_ss = data.get('R_ss')
 R_pp = data.get('R_pp')
 

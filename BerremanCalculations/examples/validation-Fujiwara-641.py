@@ -7,8 +7,9 @@
 # Verification of the code against results presented in Fujiwara's book 
 # p. 237 (section 6.4.1). We reproduce figures 6.16 and 6.17.
 
-import numpy, Berreman4x4
-from Berreman4x4 import c, pi
+import numpy
+from BerremanCalculations import Berreman4x4
+from BerremanCalculations.Berreman4x4 import pi
 import matplotlib.pyplot as pyplot
 
 n_i = 1.0       # incident medium is air
@@ -23,7 +24,7 @@ air = Berreman4x4.IsotropicNonDispersiveMaterial(n_i)
 front = Berreman4x4.IsotropicHalfSpace(air)
 
 # Anisotropic substrate
-uniaxialMaterialRef = Berreman4x4.UniaxialNonDispersiveMaterial(n_o,n_e)
+uniaxialMaterialRef = Berreman4x4.UniaxialNonDispersiveMaterial(n_o, n_e)
 back = Berreman4x4.HalfSpace()      # Material will be set later (see below)
 
 s = Berreman4x4.Structure(front, [], back)

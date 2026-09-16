@@ -6,10 +6,10 @@
 
 # Example of a TiO2/SiO2 Bragg mirror with 8.5 periods
 
-import numpy, Berreman4x4
-import scipy.linalg
+import numpy
+from BerremanCalculations import Berreman4x4
 import matplotlib.pyplot as pyplot
-from Berreman4x4 import c, pi
+from BerremanCalculations.Berreman4x4 import pi
 
 print("\n*** SiO2/TiO2 Bragg mirror ***\n")
 
@@ -56,7 +56,7 @@ s = Berreman4x4.Structure(front, [L], back)
 (lbda1, lbda2) = (1.1e-6, 2.5e-6)
 lbda_list = numpy.linspace(lbda1, lbda2, 200)
 
-data = Berreman4x4.DataList([s.evaluate(Kx, 2*pi/lbda) for lbda in lbda_list])
+data = Berreman4x4.DataList([s.evaluate(Kx, 2 * pi / lbda) for lbda in lbda_list])
 
 R = data.get('R_ss')
 T = data.get('T_ss')

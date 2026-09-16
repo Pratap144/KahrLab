@@ -6,9 +6,10 @@
 
 # Example of a cholesteric liquid crystal
 
-import numpy, Berreman4x4
+import numpy
+from BerremanCalculations import Berreman4x4
 from numpy import sin, sqrt, abs
-from Berreman4x4 import c, pi, e_y
+from BerremanCalculations.Berreman4x4 import pi, e_y
 import matplotlib.pyplot as pyplot
 
 # Materials
@@ -20,12 +21,12 @@ front = back = Berreman4x4.IsotropicHalfSpace(glass)
 Dn = ne-no
 n_med = (ne + no)/2
 LC = Berreman4x4.UniaxialNonDispersiveMaterial(no, ne)  # ne along z
-R = Berreman4x4.rotation_v_theta(e_y, pi/2) # rotation of pi/2 along y
+R = Berreman4x4.rotation_v_theta(e_y, pi / 2) # rotation of pi/2 along y
 LC = LC.rotated(R)                          # apply rotation from z to x
 # Cholesteric pitch (m):
 p = 0.65e-6
 # One half turn of a right-handed helix:
-TN = Berreman4x4.TwistedMaterial(LC, p/2, angle=+pi, div=35)
+TN = Berreman4x4.TwistedMaterial(LC, p / 2, angle=+pi, div=35)
 
 # Inhomogeneous layer, repeated layer, and structure
 IL = Berreman4x4.InhomogeneousLayer(TN)
@@ -50,7 +51,7 @@ lbda_B1, lbda_B2 = p*no, p*ne
 
 ############################################################################
 # Calculation with Berreman4x4
-data = Berreman4x4.DataList([s.evaluate(Kx,k0) for k0 in k0_list])
+data = Berreman4x4.DataList([s.evaluate(Kx, k0) for k0 in k0_list])
 
 T_pp = data.get('T_pp')
 T_ps = data.get('T_ps')

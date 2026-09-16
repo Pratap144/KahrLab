@@ -7,8 +7,9 @@
 # Total Internal Reflection 
 # Glass / Air
 
-import numpy, Berreman4x4
-from Berreman4x4 import c, pi
+import numpy
+from BerremanCalculations import Berreman4x4
+from BerremanCalculations.Berreman4x4 import pi
 from numpy import exp, cos, arcsin, real, sqrt
 import matplotlib.pyplot as pyplot
 
@@ -43,7 +44,7 @@ Kx = front.get_Kx_from_Phi(Phi_list)
 
 ############################################################################
 # Calculation with Berreman4x4
-data = Berreman4x4.DataList([s.evaluate(kx,k0) for kx in Kx])
+data = Berreman4x4.DataList([s.evaluate(kx, k0) for kx in Kx])
 
 R_p = data.get('R_pp')
 R_s = data.get('R_ss')
